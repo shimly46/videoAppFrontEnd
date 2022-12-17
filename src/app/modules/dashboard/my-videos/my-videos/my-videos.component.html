@@ -1,0 +1,72 @@
+ <!-- top fixed navbar -->
+ <nav class=" w-full p-1 fixed top-0 z-20">
+    <!-- navbar container -->
+    <div class="flex justify-between items-center px-2 sm:px-6 py-1.5 mx-auto">
+        <!-- logo container -->
+        <div class="flex items-center space-x-3">
+            <div class="flex cursor-pointer"><i class="material-icons">menu</i></div>
+            <div class="w-22 h-5">
+                  <a  [routerLink]="['/dashboard']" routerLinkActive="router-link-active" > VidForm</a>
+            </div>
+        </div>
+
+        <!-- right icons container  -->
+        <div class="flex items-center space-x-3 sm:space-x-6 pr-4">
+            <i class="material-icons cursor-pointer" [routerLink]="['/dashboard/upload']" routerLinkActive="router-link-active" >video_call</i>
+
+            <img class="w-9 h-9 rounded-full object-cover cursor-pointer" src="./assets/images/hero.png" alt="" draggable="false">
+        </div>
+
+    </div>
+</nav>
+ <!-- navbar ends here -->
+ 
+ <!-- main container -->
+ <div class="flex flex-row">
+     <!-- left sidebar fixed -->
+     <app-sidebar></app-sidebar>
+     
+ 
+ 
+     <!-- main videos container -->
+     <div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6">
+        
+          
+     <!-- videos container grid layout -->
+     <div class="videos-container" id="videos-container">
+         <!-- one video card -->
+         <div class="flex flex-col space-y-3 cursor-pointer" *ngFor="let item of dashboardListings">
+             <!-- thumbnail -->
+             <a [routerLink]="['/dashboard/view-video/'+item.id]" routerLinkActive="router-link-active" >
+                 <div class="relative h-52 sm:h-36 w-full">
+                 <img class="relative h-full w-full object-cover" [src]="item.thumbnail">
+                 </div>
+             </a>
+             <!-- video details -->
+             <div class="flex flex-col flex-auto space-y-1.5 mb-3">
+ 
+             <div class="flex items-center space-x-3">
+                 <!-- channel logo -->
+                 <img class="w-12 h-12 rounded-full object-cover cursor-pointer" src="../../../../assets/images/hero.png" alt="">
+                 <div class="flex items-start">
+                 <a   class="text-sm text-bold pr-1">{{item.videoTitle}}</a>
+                 </div>
+             </div>
+ 
+             <!-- channel link and meta data -->
+             <div class="flex flex-col pl-1 sm:pl-0 ml-14">
+                 <a [routerLink]="['/dashboard/view-video/'+item.id]" routerLinkActive="router-link-active"  class="text-gray-400 text-sm ">{{ item.createdBy }}</a>
+                 <div class="flex space-x-1">
+                     <span class="text-sm text-gray-400">{{ item.ageRating }} • {{ item.createdAt | dateAgo  }}</span>
+                 </div>
+             </div>
+             </div>
+         </div>
+         <div class="flex flex-col space-y-3" *ngIf="dashboardListings.length==0 && isLoading==false">
+            <h2>No video to show</h2>
+         </div>
+         
+     </div>
+ 
+     </div>
+ </div>

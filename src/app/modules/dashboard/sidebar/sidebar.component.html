@@ -1,0 +1,29 @@
+<div class="sidebar" id="sideBar" >
+    <!-- main home explore btns -->
+    <div class="flex flex-col w-full mb-2">
+        <div class="flex items-center space-x-5 px-7 py-2.5 cursor-pointer">
+            <i class="material-icons  md-21">home</i>
+            <h2 class="text-sm font-semibold" [routerLink]="['/dashboard']" routerLinkActive="router-link-active" >Home</h2>
+        </div>
+ 
+        <div class="flex items-center space-x-5 px-7 py-2.5 cursor-pointer" *ngIf="isCreator">
+            <i class="material-icons md-21">explore</i>
+            <h2 class="text-sm " [routerLink]="['/dashboard/my-videos']" routerLinkActive="router-link-active" >My Videos</h2>
+        </div>
+ 
+        <div class="flex items-center space-x-5 px-7 py-2.5 cursor-pointer" *ngIf="isCreator">
+            <i class="material-icons md-21">subscriptions</i>
+            <h2 class="text-sm" [routerLink]="['/dashboard/upload']" routerLinkActive="router-link-active" >Upload Video</h2>
+        </div>
+
+
+        <div class="flex items-center space-x-5 px-7 py-2.5 cursor-pointer position" 
+        style="position: fixed;bottom:   0;">
+            <i class="material-icons md-21">logout</i>
+            <h2 class="text-sm"  (click)="signOut()" >Logout</h2>
+        </div>
+ 
+    </div>
+ 
+ 
+ </div>

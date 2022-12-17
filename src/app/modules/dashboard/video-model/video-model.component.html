@@ -1,0 +1,89 @@
+ <!-- top fixed navbar -->
+ <nav class=" w-full p-1 fixed top-0 z-20">
+   <!-- navbar container -->
+   <div class="flex justify-between items-center px-2 sm:px-6 py-1.5 mx-auto">
+       <!-- logo container -->
+       <div class="flex items-center space-x-3">
+           <div class="flex cursor-pointer"><i class="material-icons">menu</i></div>
+           <div class="w-22 h-5">
+                 <a  [routerLink]="['/dashboard']" routerLinkActive="router-link-active" > VidForm</a>
+           </div>
+       </div>
+
+       <!-- right icons container  -->
+       <div class="flex items-center space-x-3 sm:space-x-6 pr-4">
+           <i class="material-icons cursor-pointer" *ngIf="isCreator" [routerLink]="['/dashboard/upload']" routerLinkActive="router-link-active" >video_call</i>
+
+           <img class="w-9 h-9 rounded-full object-cover cursor-pointer" src="./assets/images/hero.png" alt="" draggable="false">
+       </div>
+
+   </div>
+</nav>
+ <!-- navbar ends here -->
+ 
+ <!-- main container -->
+ <div class="flex flex-row">
+     <!-- left sidebar fixed -->
+     <app-sidebar></app-sidebar>
+     
+ 
+ 
+     <!-- main videos container -->
+     <div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6 bg-white">
+      <div class="videos-container bg-white h-auto" id="videos-container" style="margin-top: 56px;grid-template-columns: repeat(1, minmax(0, 1fr));">
+            <div class="row">
+               <div class="col-md-12">
+                  <video width="100%" height="150" controls controlsList="nodownload" 
+                  *ngIf="videoData.videoURL"
+                  class="single-video">
+                     <source   src="{{videoData.videoURL}}" type="video/mp4">
+                  </video>
+                  <h2>{{  videoData.title }}</h2>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="block m-4">
+                     <div class="block-header">
+                        <div class="title">
+                           <h2>Comments</h2>
+                           <div class="tag" *ngIf="videoData.comments">{{ videoData.comments.length }}</div>
+                        </div>
+                     </div>
+                     <div class="writing">
+                        <input contenteditable="true" [(ngModel)]="newComment" class="textarea">
+                        <div class="footer">
+                           <div class="group-button">
+                              <button class="btn primary"  (click)="addNewComment()">Add</button>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="comment" *ngFor="let item of videoData.comments ">
+                        <div class="user-banner">
+                           <div class="user">
+                              <div class="avatar">
+                                 <img src="../../../../assets/images/hero.png">
+                              </div>
+                              <h5>{{ item.createdBy | titlecase }}</h5>
+                           </div>
+                           <button class="btn dropdown"><i class="ri-more-line"></i></button>
+                        </div>
+                        <div class="content">
+                           <p>{{ item.comment }}</p>
+                        </div>
+                        <div class="footer">
+                           <span class="is-mute">{{ item.createdAt | dateAgo}}</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+             </div>
+      </div>
+          
+          
+      </div>
+   </div>
+   
+   
+   
+   

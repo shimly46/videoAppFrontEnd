@@ -1,0 +1,127 @@
+ <!-- top fixed navbar -->
+ <nav class=" w-full p-1 fixed top-0 z-20">
+   <!-- navbar container -->
+   <div class="flex justify-between items-center px-2 sm:px-6 py-1.5 mx-auto">
+       <!-- logo container -->
+       <div class="flex items-center space-x-3">
+           <div class="flex cursor-pointer"><i class="material-icons">menu</i></div>
+           <div class="w-22 h-5">
+                 <a  [routerLink]="['/dashboard']" routerLinkActive="router-link-active" > VidForm</a>
+           </div>
+       </div>
+
+       <!-- right icons container  -->
+       <div class="flex items-center space-x-3 sm:space-x-6 pr-4">
+           <i class="material-icons cursor-pointer" *ngIf="isCreator">video_call</i>
+
+           <img class="w-9 h-9 rounded-full object-cover cursor-pointer" src="./assets/images/hero.png" alt="" draggable="false">
+       </div>
+
+   </div>
+</nav>
+ <!-- navbar ends here -->
+
+ <!-- main container -->
+ <div class="flex flex-row">
+   <!-- left sidebar fixed -->
+   <app-sidebar></app-sidebar>
+
+   <!-- main videos container -->
+   <div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6">
+        <!-- videos container grid layout -->
+     <div class="videos-container" id="videos-container" style="margin-top: 56px;grid-template-columns: repeat(1, minmax(0, 1fr));">
+      <form [formGroup]="uploadFileForm" (ngSubmit)="uploadFile()">
+         <div class="container-fluid upload-details">
+           <div class="row">
+              <div class="col-lg-12">
+                 <div class="mb-3">
+                    <h2>Upload Your Video</h2>
+                 </div>
+              </div>
+              <div class="col-lg-12 mb-3">
+                  <div class="osahan-form">
+                       <div class="form-group">
+                          <label for="">Upload Video</label>
+                          <input type="file" placeholder="Select Video" (change)="uploadMediaFile($event)"  class="email form-control" accept="video/mp4,video/x-m4v,video/*">
+                       </div>
+                  </div>
+                
+              </div>
+              
+           </div>
+      
+           <div class="row">
+              <div class="col-lg-12">
+                 <div class="osahan-form">
+                    <div class="row">
+                       <div class="col-lg-12 my-3">
+                          <div class="form-group">
+                             <label for="e1">Video Title</label>
+                             <input type="text" formControlName="title" placeholder="Enter video title" id="e1" class="form-control">
+                          </div>
+                       </div>
+                    </div>
+                    <div class="row">
+                       <div class="col-lg-5 mb-3">
+                          <div class="form-group">
+                             <label for="e7">Producer</label>
+                             <input type="text" formControlName="producer" placeholder="Enter producer name" id="e7" class="form-control">
+                          </div>
+                       </div>
+                       <div class="col-lg-5 mb-3">
+                          <div class="form-group">
+                             <label for="e7">Publisher</label>
+                             <input type="text" formControlName="publisher" placeholder="Enter Publisher Studio Name" id="e7" class="form-control">
+                          </div>
+                       </div>
+                    </div>
+                    <div class="row">
+                     <div class="col-lg-3 mb-3">
+                       <div class="form-group">
+                         <label for="e4">Genre</label>
+                         <select id="e4" class="form-control custom-select" formControlName="genre">
+                            <option value="" disabled="true">Select Genre</option>
+                            <option *ngFor="let item of genreList" [value]="item.id">{{item.genre | titlecase}}</option>
+                         </select>
+                       </div>
+                     </div>
+                     <div class="col-lg-3 mb-3">
+                        <div class="form-group">
+                           <label for="e9">Age Rating</label>
+                           <select id="e9" class="form-control custom-select"
+                             formControlName="rating">
+                             <option value="" disabled="true">Select Age Rating</option>
+                             <option value="G">G</option>
+                             <option value="PG">PG</option>
+                             <option value="PG-13">PG-13</option>
+                             <option value="18+">18+</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-lg-6 mb-3">
+                        <div class="osahan-form">
+                              <div class="form-group">
+                                <label for="">Thumbnail</label>
+                                <input type="file" placeholder="Select Thumbnail" (change)="uploadThumbnailFile($event)" class="email form-control" accept="image/x-png,image/jpeg">
+                              </div>
+                        </div>
+                     </div>
+                  </div>
+                 </div>
+                 <div class="osahan-area text-center mt-3">
+                    <button class="btn btn-outline-primary" type="submit">Upload Video</button>
+                 </div>
+                 
+                  <div class="col-lg-12" *ngIf="videoLoading">
+                     <div class="osahan-desc">Your Video is still uploading, please keep this page open until it's done.</div>
+                  </div>
+                 <hr>
+              </div>
+           </div>
+        </div>
+       </form>
+     </div>
+
+      
+   </div>
+</div>

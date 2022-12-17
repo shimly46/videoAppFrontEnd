@@ -1,0 +1,29 @@
+<nav class=" w-full p-1 fixed top-0 z-20">
+    <!-- navbar container -->
+    <div class="flex justify-between items-center px-2 sm:px-6 py-1.5 mx-auto">
+        <!-- logo container -->
+        <div class="flex items-center space-x-3">
+            <div class="flex cursor-pointer"><i class="material-icons">menu</i></div>
+            <div class="w-22 h-5">
+                  <a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" > VidForm</a>
+            </div>
+        </div>
+        <!-- search container -->
+        <div class="hidden md:flex items-center space-x-2 w-1/2">
+            <!-- input box -->
+            <div class="flex items-center flex-auto justify-between rounded border">
+                <input class=" w-full rounded-l outline-none border-none p-0.5 pl-3 placeholder-gray-500" type="text" placeholder="Search">
+                
+                <i class="material-icons md-21 text-center rounded-r hover:text-white p-1 w-20 cursor-pointer">search</i>
+            </div>
+        </div>
+
+        <!-- right icons container  -->
+        <div class="flex items-center space-x-3 sm:space-x-6 pr-4">
+            <i class="material-icons cursor-pointer">video_call</i>
+
+            <img class="w-9 h-9 rounded-full object-cover cursor-pointer" src="./assets/images/hero.png" alt="" draggable="false">
+        </div>
+
+    </div>
+</nav>
