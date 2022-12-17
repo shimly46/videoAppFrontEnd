@@ -19,7 +19,7 @@ get ApiUrl() {
     }
     getApiUrl() {
         let originalPath = window.location.origin;
-        let domain: string = "https://writes-backend.azurewebsites.net/";
+        let domain: string = "https://projectvideooncloud.azurewebsites.net/";
          if (originalPath.includes("localhost")) {
              domain = "http://localhost:3000/";
          }
